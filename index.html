@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="id" data-theme="dark">
+<head>
+<meta charset="utf-8"><meta name="color-scheme" content="dark">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SPK Pipa Air Bersih · AHP</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0A0D1A;--card:#111628;--ink:#F1F5F9;--mut:#A9B4CC;--line:rgba(255,255,255,.08);--b9:#10204F;--b8:#1E3A8A;--b7:#2F5BD6;--hero:#17236B;--amber:#F472B6;--amber5:#EC4899;--ok:#6EE7B7;--okbg:rgba(16,185,129,.15);--bad:#FCA5A5;--badbg:rgba(248,113,113,.15);--heat:#3B82F6;--bar:#5B8DEF;--hi:#16203D}
+*{box-sizing:border-box}html{color-scheme:dark}
+body{margin:0;font-family:"Plus Jakarta Sans",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--ink);font-size:14px}
+h1,h2,h3,h4,.big,.kv{font-family:Outfit,"Plus Jakarta Sans",system-ui,sans-serif}
+a:focus-visible,button:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid var(--amber);outline-offset:2px}
+.skip{position:absolute;left:-999px}.skip:focus{left:8px;top:8px;background:#fff;color:#000;padding:6px;z-index:99}
+.ic{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
+.app{display:flex;min-height:100vh}
+aside{width:288px;background:var(--card);border-right:1px solid var(--line);position:sticky;top:0;height:100vh;display:flex;flex-direction:column;justify-content:space-between;flex-shrink:0;z-index:20;overflow:auto}
+.brand{display:flex;align-items:center;gap:12px;padding:24px 24px 16px}
+.logo{width:40px;height:40px;border-radius:12px;background:linear-gradient(135deg,var(--b9),var(--b7));display:flex;align-items:center;justify-content:center;color:var(--amber);box-shadow:0 6px 16px rgba(30,58,138,.5)}
+.logo .ic{width:20px;height:20px}
+.brand h1{margin:0;font-size:20px;font-weight:800;letter-spacing:-.02em;line-height:1.15;color:#fff}.brand p{margin:2px 0 0;font-size:12px;font-weight:500;color:var(--mut)}
+nav{padding:8px 12px}.nl{margin:0;padding:14px 12px 8px;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--mut)}
+nav a{display:flex;align-items:center;gap:12px;padding:12px 16px;margin:2px 0;border-radius:12px;color:#D5DBE5;text-decoration:none;font-size:14px;font-weight:600;transition:background .15s,color .15s}
+nav a:hover{background:rgba(255,255,255,.06);color:#fff}
+nav a.on{background:linear-gradient(135deg,var(--b8),var(--b9));color:#fff;box-shadow:inset 0 0 0 1px rgba(244,114,182,.25)}nav a.on .ic{color:var(--amber)}
+.sync{margin:0;padding:16px 20px 20px;border-top:1px solid var(--line);background:rgba(255,255,255,.02);line-height:1.5}
+.sync-st{display:flex;align-items:center;gap:10px;font-size:13px;font-weight:600;color:#E2E8F0}
+.sync .dot{position:relative;width:10px;height:10px;border-radius:50%;background:#7C8799;flex-shrink:0}
+.sync[data-s=ok] .dot{background:#10B981}.sync[data-s=ok] .dot::after{content:"";position:absolute;inset:0;border-radius:50%;background:#34D399;animation:ping 1.6s cubic-bezier(0,0,.2,1) infinite}
+.sync[data-s=err] .dot{background:#F87171}.sync[data-s=load] .dot{background:var(--amber);animation:pulse 1s infinite}
+@keyframes ping{75%,100%{transform:scale(2.4);opacity:0}}@keyframes pulse{50%{opacity:.35}}
+.sync-time{font-size:12px;color:var(--mut);margin:6px 0 8px}
+.sync a#sideOpen{display:none;font-size:13px;font-weight:600;color:var(--amber);text-decoration:underline;text-underline-offset:3px}.sync a#sideOpen:hover{color:#FBCFE8}
+main{flex:1;min-width:0;display:flex;flex-direction:column}
+header.top{height:64px;padding:0 32px;display:flex;align-items:center;justify-content:space-between;gap:12px;border-bottom:1px solid var(--line);background:rgba(17,22,40,.78);backdrop-filter:blur(12px);position:sticky;top:0;z-index:10}
+.crumb{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--amber)}header.top h2{margin:0;font-size:18px;font-weight:700;line-height:1.2}
+.acts{display:flex;align-items:center;gap:12px}
+.pill{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:99px;font-size:12px;font-weight:600;background:rgba(122,135,153,.14);border:1px solid rgba(122,135,153,.3);color:#C3CCD9}
+.pill i{width:8px;height:8px;border-radius:50%;background:#7C8799}
+.pill[data-s=ok]{background:rgba(16,185,129,.12);border-color:rgba(16,185,129,.35);color:#6EE7B7}.pill[data-s=ok] i{background:#10B981}
+.pill[data-s=err]{background:var(--badbg);border-color:rgba(248,113,113,.35);color:var(--bad)}.pill[data-s=err] i{background:#F87171}
+.pill[data-s=load]{background:rgba(244,114,182,.12);border-color:rgba(244,114,182,.35);color:var(--amber)}.pill[data-s=load] i{background:var(--amber)}
+button{font:inherit;cursor:pointer;color:var(--ink)}
+.pbtn,.sbtn{display:inline-flex;align-items:center;gap:8px;border-radius:12px;padding:8px 16px;font-size:12px;font-weight:700}
+.pbtn{background:var(--b8);border:1px solid rgba(244,114,182,.25);color:#fff;box-shadow:0 2px 8px rgba(0,0,0,.3)}.pbtn:hover{background:var(--b7)}
+.sbtn{background:rgba(255,255,255,.05);border:1px solid var(--line)}.sbtn:hover{background:rgba(255,255,255,.1)}
+.pbtn .ic,.sbtn .ic{width:14px;height:14px}.spin{animation:spin 1s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}
+.content{padding:32px;max-width:1280px;width:100%;margin:0 auto;flex:1}
+.lead{margin:0 0 24px;color:var(--mut);font-size:14px}
+section.view{display:none}section.view.on{display:block}
+section.view>*+*{margin-top:24px}
+.g12{display:grid;grid-template-columns:7fr 5fr;gap:24px}.g12b{display:grid;grid-template-columns:7fr 5fr;gap:24px}
+.hero{position:relative;overflow:hidden;background:linear-gradient(135deg,#102066 0%,#27309A 55%,#9D2A78 100%);border:1px solid rgba(255,255,255,.08);border-radius:24px;padding:28px;display:flex;flex-direction:column;justify-content:space-between;gap:28px;box-shadow:0 20px 40px rgba(10,20,80,.5)}
+.wm{position:absolute;right:-30px;bottom:-30px;width:260px;height:260px;opacity:.08;stroke-width:1.2;pointer-events:none}
+.hz,.hbot{position:relative}.hrow{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.eb{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#C7D7FE}
+.code{display:inline-block;padding:4px 10px;border-radius:8px;background:rgba(236,72,153,.2);border:1px solid rgba(236,72,153,.35);color:var(--amber);font:700 12px ui-monospace,SFMono-Regular,Menlo,monospace}
+.hero h3{margin:12px 0 0;font-size:40px;font-weight:800;letter-spacing:-.02em;line-height:1.1;color:#fff}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}.chips span{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.1);padding:5px 10px;border-radius:8px;font-size:12px;color:#C7D7FE}.chips b{color:#fff}.chips .ic{width:14px;height:14px;color:var(--amber)}
+.hbot{border-top:1px solid rgba(255,255,255,.1);padding-top:22px}.hs{display:flex;align-items:baseline;gap:16px;flex-wrap:wrap}
+.big{font-size:48px;font-weight:900;letter-spacing:-.02em;color:#F9A8D4;line-height:1}.hs p{margin:0;font-size:12px;line-height:1.5;color:#C7D7FE;max-width:300px}.hs p b{color:#F9A8D4}
+.seg{display:grid;gap:6px;margin-top:20px}.seg i{display:block;height:8px;border-radius:99px}.cap{margin:8px 0 0;font-size:11px;color:#A9BFEF}
+.kpis{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.kpi{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px;display:flex;flex-direction:column;justify-content:space-between;gap:12px}
+.kv{font-size:30px;font-weight:800;color:#fff;line-height:1.1;display:block}.kpi h4{margin:6px 0 0;font-size:12px;font-weight:700;color:#E2E8F0}
+.kpi p{margin:0;padding-top:10px;border-top:1px solid var(--line);font-size:11px;color:var(--mut)}
+.kpi.okk{background:var(--okbg);border-color:rgba(16,185,129,.35)}.kpi.okk .kv,.kpi.okk p{color:var(--ok)}.kpi.badk{background:var(--badbg);border-color:rgba(248,113,113,.35)}.kpi.badk .kv,.kpi.badk p{color:var(--bad)}
+.kg4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.concl{background:rgba(244,114,182,.07);border:1px solid rgba(244,114,182,.22);border-left:4px solid var(--amber);border-radius:16px;padding:16px 20px;font-weight:600;line-height:1.55}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:24px}
+.panel h3{margin:0 0 14px;font-size:18px;font-weight:700}.panel .ph h3{margin:0}
+.ph{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:18px}.eyebrow{margin:0 0 2px;font-size:12px;font-weight:600;color:var(--mut)}
+.tag{font-size:12px;font-weight:600;color:var(--amber);background:rgba(244,114,182,.1);border:1px solid rgba(244,114,182,.3);padding:4px 12px;border-radius:99px}
+.pf{margin-top:20px;padding-top:16px;border-top:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;font-size:12px;color:var(--mut)}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:24px}
+.bar{display:grid;grid-template-columns:minmax(120px,190px) 1fr 56px;gap:12px;align-items:center;font-size:13px;margin:10px 0}
+.bar>span:nth-child(2){display:block;height:10px;border-radius:99px;background:rgba(255,255,255,.07);overflow:hidden}.bar i{display:block;height:100%;background:var(--bar);border-radius:99px}
+.hl .bar:first-child i{background:var(--amber)}.hl .bar:first-child>span:first-child{color:#F9A8D4;font-weight:700}.bar span:last-child{text-align:right;font-variant-numeric:tabular-nums;color:var(--mut)}
+.cgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:20px}
+.cc{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:20px;display:flex;flex-direction:column;gap:12px}
+.cct{display:flex;align-items:center;justify-content:space-between;gap:8px}.cc h4{margin:0;font-size:16px;font-weight:700;line-height:1.3}
+.cw{display:flex;align-items:baseline;justify-content:space-between;gap:8px}.cw b{font:800 26px Outfit,sans-serif;color:#fff}.cw span{font-size:12px;color:var(--mut)}
+.trk{height:6px;border-radius:99px;background:rgba(255,255,255,.07);overflow:hidden}.trk i{display:block;height:100%;background:var(--bar);border-radius:99px}
+.rkb{font-size:11px;font-weight:700;color:var(--mut);background:rgba(255,255,255,.06);padding:3px 10px;border-radius:99px}
+.rk{display:inline-flex;align-items:center;justify-content:center;min-width:28px;height:28px;border-radius:50%;font-weight:700;background:rgba(255,255,255,.07)}.rk.g{background:var(--amber);color:#1F0A17}
+.pp{display:inline-block;padding:3px 10px;border-radius:99px;font-size:11px;font-weight:700;white-space:nowrap}
+.pp.qh{background:rgba(244,114,182,.15);color:var(--amber)}.pp.qm{background:rgba(96,165,250,.2);color:#BFDBFE}.pp.ql{background:rgba(148,163,184,.15);color:#CBD5E1}
+table{border-collapse:collapse;width:100%;font-size:13px}th,td{padding:10px 12px;border-bottom:1px solid var(--line);text-align:left}
+th{background:var(--b9);color:#E8EEFF;font-weight:700;font-size:12px;position:sticky;top:0}td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
+tr.first td{background:rgba(244,114,182,.08)}.sc{overflow:auto;max-height:560px;border:1px solid var(--line);border-radius:14px}
+.hm{--a:0}td.hm{background:color-mix(in srgb,var(--heat) calc(var(--a)*65%),transparent)}
+.badge{display:inline-block;padding:2px 10px;border-radius:99px;font-size:12px;font-weight:700;background:var(--okbg);color:var(--ok)}.badge.bad{background:var(--badbg);color:var(--bad)}
+.mut{color:var(--mut);font-size:12px}.okt{color:var(--ok)}.badt{color:var(--bad)}
+select,.tin{font:inherit;padding:8px 12px;border-radius:12px;border:1px solid var(--line);background:rgba(255,255,255,.05);color:var(--ink)}
+.tin{width:100%;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px}.addrow{display:flex;gap:10px;margin-top:10px}
+input[type=file]{font:inherit;color:var(--mut)}
+.panel a{color:var(--amber)}
+#toast{position:fixed;right:24px;bottom:24px;background:#070A16;border:1px solid rgba(255,255,255,.12);color:#fff;padding:12px 18px;border-radius:16px;font-size:12px;font-weight:500;opacity:0;transform:translateY(16px);transition:opacity .25s,transform .25s;pointer-events:none;max-width:340px;z-index:50;box-shadow:0 16px 40px rgba(0,0,0,.5)}#toast.on{opacity:1;transform:none}
+ol{line-height:1.7}
+@media(max-width:1000px){.g12,.g12b{grid-template-columns:1fr}.kg4{grid-template-columns:1fr 1fr}}
+@media(max-width:800px){.app{flex-direction:column}aside{width:auto;height:auto;position:static;overflow:visible}.brand{padding:16px}nav{display:flex;overflow-x:auto;gap:4px;padding:0 12px 12px}nav .nl{display:none}nav a{white-space:nowrap;padding:10px 14px}.sync{display:none}header.top{padding:0 16px}.pill{display:none}.content{padding:16px}.hero h3{font-size:32px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Lewati ke konten utama</a>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><symbol id="i-droplets" viewBox="0 0 24 24"><path d="M7 16.3c2.2 0 4-1.83 4-4.05 0-1.16-.57-2.26-1.71-3.19S7.29 6.75 7 5.3c-.29 1.45-1.14 2.84-2.29 3.76S3 11.1 3 12.25c0 2.22 1.8 4.05 4 4.05z"/><path d="M12.56 6.6A10.97 10.97 0 0 0 14 3.02c.5 2.5 2 4.9 4 6.5s3 3.5 3 5.5a6.98 6.98 0 0 1-11.91 4.97"/></symbol><symbol id="i-dash" viewBox="0 0 24 24"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></symbol><symbol id="i-trophy" viewBox="0 0 24 24"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-1.04 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98 1.04 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></symbol><symbol id="i-table" viewBox="0 0 24 24"><path d="M12 3v18"/><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18"/><path d="M3 15h18"/></symbol><symbol id="i-sliders" viewBox="0 0 24 24"><path d="M21 4h-7"/><path d="M10 4H3"/><path d="M21 12h-9"/><path d="M8 12H3"/><path d="M21 20h-5"/><path d="M12 20H3"/><path d="M14 2v4"/><path d="M8 10v4"/><path d="M16 18v4"/></symbol><symbol id="i-pin" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></symbol><symbol id="i-book" viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></symbol><symbol id="i-db" viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></symbol><symbol id="i-refresh" viewBox="0 0 24 24"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M8 16H3v5"/></symbol><symbol id="i-alert" viewBox="0 0 24 24"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4"/><path d="M12 17h.01"/></symbol><symbol id="i-shield" viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></symbol><symbol id="i-dl" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></symbol></defs></svg>
+<div class="app">
+<aside>
+  <div>
+    <div class="brand"><div class="logo"><svg class="ic" aria-hidden="true"><use href="#i-droplets"/></svg></div><div><h1>SPK Pipa Air</h1><p id="brandSub">10 Wilayah Layanan · AHP</p></div></div>
+    <nav aria-label="Menu utama">
+      <p class="nl">Analisis</p>
+      <a href="#ringkasan" data-v="ringkasan"><svg class="ic" aria-hidden="true"><use href="#i-dash"/></svg><span>Ringkasan</span></a><a href="#peringkat" data-v="peringkat"><svg class="ic" aria-hidden="true"><use href="#i-trophy"/></svg><span>Perankingan</span></a><a href="#matriks" data-v="matriks"><svg class="ic" aria-hidden="true"><use href="#i-table"/></svg><span>Matriks AHP</span></a><a href="#kriteria" data-v="kriteria"><svg class="ic" aria-hidden="true"><use href="#i-sliders"/></svg><span>Kriteria &amp; Bobot</span></a>
+      <p class="nl">Data &amp; Rujukan</p>
+      <a href="#alternatif" data-v="alternatif"><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg><span>Data Wilayah</span></a><a href="#metode" data-v="metode"><svg class="ic" aria-hidden="true"><use href="#i-book"/></svg><span>Metode &amp; Validasi</span></a><a href="#sumber" data-v="sumber"><svg class="ic" aria-hidden="true"><use href="#i-db"/></svg><span>Koneksi Google Sheets</span></a>
+    </nav>
+  </div>
+  <div class="sync" id="sync" data-s="none" role="status" aria-live="polite">
+    <div class="sync-st"><i class="dot" aria-hidden="true"></i><span id="syncTxt">Belum tersambung ke spreadsheet</span></div>
+    <div class="sync-time" id="syncTime"></div>
+    <a id="sideOpen" href="#" target="_blank" rel="noopener">Buka spreadsheet sumber</a>
+  </div>
+</aside>
+<main id="main">
+  <header class="top">
+    <div><span class="crumb" id="crumb">Dashboard</span><h2 id="ttl">Ringkasan SPK AHP</h2></div>
+    <div class="acts"><span class="pill" id="livePill" data-s="none"><i></i><span id="liveTxt">Belum tersambung</span></span>
+    <button id="btnSync2" class="pbtn"><svg class="ic" id="syncIc" aria-hidden="true"><use href="#i-refresh"/></svg><span>Sinkron data</span></button></div>
+  </header>
+  <div class="content">
+  <p id="sub" class="lead"></p>
+  <section class="view" id="v-ringkasan">
+    <div class="g12"><div class="hero" id="hero"></div><div class="kpis" id="cards"></div></div>
+    <div class="concl" id="concl"></div>
+    <div class="g12b">
+      <div class="panel"><div class="ph"><div><p class="eyebrow">Sebaran nilai</p><h3>Nilai Prioritas Semua Alternatif</h3></div><span class="tag">Batang pink menandai Peringkat 1</span></div><div id="sbars" class="hl"></div></div>
+      <div class="panel"><p class="eyebrow">Pembobotan</p><h3>Bobot Kriteria AHP</h3><div id="wbars"></div><div class="pf" id="wfoot"></div></div>
+    </div>
+  </section>
+  <section class="view" id="v-peringkat">
+    <div class="ph" style="margin:0"><div><h3 style="font-size:22px">Perankingan &amp; Prioritas Tindakan</h3><p class="mut" id="rankSub" style="margin:4px 0 0"></p></div><button id="btnCsv" class="sbtn"><svg class="ic" aria-hidden="true"><use href="#i-dl"/></svg>Ekspor CSV</button></div>
+    <div class="panel" style="padding:0;overflow:hidden"><div class="sc" style="border:0;border-radius:0"><table id="tRank"></table></div></div>
+  </section>
+  <section class="view" id="v-matriks"><div class="panel"><h3>Skor terbobot per kriteria</h3><p class="mut">V(ij) = skor alternatif(i,j) × bobot kriteria(j); Score = Σ V(ij). Sel lebih terang = kontribusi lebih besar.</p><div class="sc"><table id="tMat"></table></div></div></section>
+  <section class="view" id="v-kriteria">
+    <div class="kg4" id="kCons"></div>
+    <div class="cgrid" id="critCards"></div>
+    <div class="panel"><h3>Matriks perbandingan berpasangan kriteria</h3><div class="sc"><table id="tCM"></table></div></div>
+    <div class="panel"><h3>Konsistensi per matriks</h3><div class="sc"><table id="tCons"></table></div></div>
+  </section>
+  <section class="view" id="v-alternatif">
+    <div class="cgrid" id="altCards"></div>
+    <div class="panel"><h3>Matriks perbandingan alternatif</h3><label class="mut">Kriteria: <select id="selK"></select></label><div class="sc" style="margin-top:12px"><table id="tAM"></table></div></div>
+  </section>
+  <section class="view" id="v-metode">
+    <div class="grid2"><div class="panel"><h3>Skala Saaty</h3><table id="tSaaty"></table></div><div class="panel"><h3>Random Index (RI)</h3><table id="tRI"></table></div></div>
+    <div class="panel"><h3>Langkah &amp; rumus</h3><ol>
+      <li>Matriks: a(ii)=1; a(ij)=input; a(ji)=1/a(ij); Total(j)=Σ a(ij).</li>
+      <li>Normalisasi: N(ij)=a(ij)/Total(j); P.Vektor(i)=Σ N(ij); Bobot(i)=P.Vektor(i)/n.</li>
+      <li>λmax=Σ(Bobot(i)×Total(i)); CI=(λmax−n)/(n−1); CR=CI/RI; konsisten jika CR ≤ 0,1.</li>
+      <li>Score(i)=Σ[skor alternatif(i,j)×bobot kriteria(j)]; peringkat 1 = score tertinggi.</li></ol>
+      <p class="mut">Seluruh nilai bobot, CR, dan score dihitung ulang di browser dari matriks perbandingan, bukan disalin dari sel hasil spreadsheet.</p></div>
+  </section>
+  <section class="view" id="v-sumber">
+    <div class="panel"><h3>Spreadsheet sumber</h3>
+      <p class="mut" style="margin-top:0">Tempel link Google Sheets (tata letak sama seperti spk_ahp.xlsx). Klik <b>Simpan &amp; sinkron</b> untuk memuat data; tombol <b>Sinkron data</b> di kanan atas memuat ulang kapan saja.</p>
+      <div class="addrow"><input class="tin" id="srcUrl" placeholder="https://docs.google.com/spreadsheets/d/…/edit?gid=0" aria-label="Link Google Sheets"><button id="btnSync" class="pbtn">Simpan &amp; sinkron</button></div>
+      <p style="margin:10px 0"><a id="btnOpen" href="#" target="_blank" rel="noopener" style="display:none">Buka spreadsheet sumber ↗</a></p>
+      <p class="mut" style="margin:0 0 6px">Atau impor file CSV hasil unduhan sheet:</p><input type="file" id="srcFile" accept=".csv,text/csv" aria-label="Impor CSV">
+      <p id="srcStatus" class="mut" style="margin-top:12px"></p></div>
+    <div class="panel"><h3>Cara menyiapkan link</h3><ol class="mut" style="margin:0;padding-left:20px;line-height:1.7">
+      <li>Buka Google Sheets → <b>File → Import → Upload</b> file CSV/XLSX → buat spreadsheet baru.</li>
+      <li>Klik <b>Bagikan</b> → akses umum <b>"Siapa saja yang memiliki link"</b> sebagai <b>Pelihat</b>.</li>
+      <li>Salin link, tempel di atas, lalu <b>Simpan &amp; sinkron</b>.</li></ol>
+      <p class="mut" style="margin-bottom:0">Data dibaca ulang di browser dan dihitung dengan metode AHP; sheet tidak diubah. Nilai perbandingan C8 dan C9 di file asli masih contoh.</p></div>
+  </section>
+  </div>
+<div id="toast" role="status"></div>
+</main>
+</div>
+<script>
+const D={"kriteria": [{"kode": "C1", "nama": "Tingkat Kebocoran"}, {"kode": "C2", "nama": "Tingkat Kerusakan Pipa"}, {"kode": "C3", "nama": "Tekanan Air Bermasalah"}, {"kode": "C4", "nama": "Umur Pipa"}, {"kode": "C5", "nama": "Volume Air"}, {"kode": "C6", "nama": "Tingkat Kepentingan Jalur Pipa"}, {"kode": "C7", "nama": "Biaya Perbaikan"}, {"kode": "C8", "nama": "Jumlah Pelanggan Terdampak"}, {"kode": "C9", "nama": "Risiko Pencemaran Kualitas Air"}], "alternatif": [{"kode": "A1", "nama": "Pantai Cermin"}, {"kode": "A2", "nama": "Kel Cemara"}, {"kode": "A3", "nama": "Jln Merdeka"}, {"kode": "A4", "nama": "Pagar Merbau"}, {"kode": "A5", "nama": "Perbaungan"}, {"kode": "A6", "nama": "Johor"}, {"kode": "A7", "nama": "Galang"}, {"kode": "A8", "nama": "Tembung"}, {"kode": "A9", "nama": "Dolok"}, {"kode": "A10", "nama": "Kotarih"}], "saaty": [[1, "Kriteria A sama penting dengan kriteria B"], [2, "A mendekati sedikit lebih penting dari B"], [3, "A sedikit lebih penting dari B"], [4, "A mendekati lebih penting dari B"], [5, "A lebih penting dari B"], [6, "A mendekati sangat penting dari B"], [7, "A sangat penting dari B"], [8, "A mendekati mutlak sangat penting dari B"], [9, "A mutlak sangat penting dari B"]], "ri": [0, 0, 0.58, 0.9, 1.12, 1.24, 1.32, 1.41, 1.45, 1.49], "kriteriaMatrix": [[1, 1, 2, 3, 1, 2, 2, 1, 2], [1, 1, 2, 2, 0.5, 1, 2, 0.5, 1], [0.5, 0.5, 1, 1, 0.333333333333333, 1, 1, 0.333333333333333, 0.5], [0.333333333333333, 0.5, 1, 1, 0.25, 0.5, 1, 0.333333333333333, 0.5], [1, 2, 3, 4, 1, 2, 3, 1, 2], [0.5, 1, 1, 2, 0.5, 1, 1, 0.5, 1], [0.5, 0.5, 1, 1, 0.333333333333333, 1, 1, 0.333333333333333, 0.5], [1, 2, 3, 3, 1, 2, 3, 1, 2], [0.5, 1, 2, 2, 0.5, 1, 2, 0.5, 1]], "altMatrix": [[[1, 1, 2, 0.5, 0.333333333333333, 1, 2, 1, 2, 2], [1, 1, 2, 0.5, 0.333333333333333, 1, 2, 1, 2, 2], [0.5, 0.5, 1, 0.2, 0.166666666666667, 0.5, 1, 0.5, 1, 1], [2, 2, 5, 1, 1, 2, 5, 2, 5, 5], [3, 3, 6, 1, 1, 3, 6, 3, 6, 6], [1, 1, 2, 0.5, 0.333333333333333, 1, 2, 1, 2, 2], [0.5, 0.5, 1, 0.2, 0.166666666666667, 0.5, 1, 0.5, 1, 1], [1, 1, 2, 0.5, 0.333333333333333, 1, 2, 1, 2, 2], [0.5, 0.5, 1, 0.2, 0.166666666666667, 0.5, 1, 0.5, 1, 1], [0.5, 0.5, 1, 0.2, 0.166666666666667, 0.5, 1, 0.5, 1, 1]], [[1, 1, 3, 0.5, 1, 0.5, 1, 1, 1, 0.5], [1, 1, 3, 0.5, 1, 0.5, 1, 1, 1, 0.5], [0.333333333333333, 0.333333333333333, 1, 0.166666666666667, 0.25, 0.166666666666667, 0.333333333333333, 0.333333333333333, 0.333333333333333, 0.166666666666667], [2, 2, 6, 1, 2, 1, 2, 2, 2, 1], [1, 1, 4, 0.5, 1, 0.5, 1, 1, 1, 0.5], [2, 2, 6, 1, 2, 1, 2, 2, 2, 1], [1, 1, 3, 0.5, 1, 0.5, 1, 1, 1, 0.5], [1, 1, 3, 0.5, 1, 0.5, 1, 1, 1, 0.5], [1, 1, 3, 0.5, 1, 0.5, 1, 1, 1, 0.5], [2, 2, 6, 1, 2, 1, 2, 2, 2, 1]], [[1, 0.5, 0.166666666666667, 0.333333333333333, 0.2, 0.5, 0.333333333333333, 0.25, 0.333333333333333, 0.333333333333333], [2, 1, 0.333333333333333, 0.5, 0.5, 1, 0.5, 0.5, 0.5, 0.5], [6, 3, 1, 2, 1, 3, 2, 2, 2, 2], [3, 2, 0.5, 1, 0.5, 2, 1, 1, 1, 1], [5, 2, 1, 2, 1, 2, 2, 1, 2, 2], [2, 1, 0.333333333333333, 0.5, 0.5, 1, 0.5, 0.5, 0.5, 0.5], [3, 2, 0.5, 1, 0.5, 2, 1, 1, 1, 1], [4, 2, 0.5, 1, 1, 2, 1, 1, 1, 1], [3, 2, 0.5, 1, 0.5, 2, 1, 1, 1, 1], [3, 2, 0.5, 1, 0.5, 2, 1, 1, 1, 1]], [[1, 0.5, 0.5, 0.2, 0.5, 0.333333333333333, 0.2, 0.5, 1, 1], [2, 1, 1, 0.5, 1, 0.5, 0.5, 1, 2, 2], [2, 1, 1, 0.5, 1, 0.5, 0.5, 1, 2, 2], [5, 2, 2, 1, 2, 2, 1, 2, 5, 5], [2, 1, 1, 0.5, 1, 0.5, 0.5, 1, 2, 2], [3, 2, 2, 0.5, 2, 1, 0.5, 2, 3, 3], [5, 2, 2, 1, 2, 2, 1, 2, 5, 5], [2, 1, 1, 0.5, 1, 0.5, 0.5, 1, 2, 2], [1, 0.5, 0.5, 0.2, 0.5, 0.333333333333333, 0.2, 0.5, 1, 1], [1, 0.5, 0.5, 0.2, 0.5, 0.333333333333333, 0.2, 0.5, 1, 1]], [[1, 1, 3, 0.5, 0.5, 0.5, 0.5, 2, 1, 1], [1, 1, 3, 0.5, 0.5, 0.5, 0.5, 2, 1, 1], [0.333333333333333, 0.333333333333333, 1, 0.166666666666667, 0.2, 0.2, 0.2, 0.5, 0.333333333333333, 0.333333333333333], [2, 2, 6, 1, 1, 1, 1, 3, 2, 2], [2, 2, 5, 1, 1, 1, 1, 2, 2, 2], [2, 2, 5, 1, 1, 1, 1, 2, 2, 2], [2, 2, 5, 1, 1, 1, 1, 2, 2, 2], [0.5, 0.5, 2, 0.333333333333333, 0.5, 0.5, 0.5, 1, 0.5, 0.5], [1, 1, 3, 0.5, 0.5, 0.5, 0.5, 2, 1, 1], [1, 1, 3, 0.5, 0.5, 0.5, 0.5, 2, 1, 1]], [[1, 2, 1, 1, 4, 1, 2, 2, 1, 2], [0.5, 1, 0.5, 0.5, 2, 0.5, 1, 1, 0.5, 1], [1, 2, 1, 1, 3, 0.5, 2, 2, 1, 2], [1, 2, 1, 1, 4, 1, 2, 2, 1, 2], [0.25, 0.5, 0.333333333333333, 0.25, 1, 0.2, 0.5, 0.5, 0.333333333333333, 0.5], [1, 2, 2, 1, 5, 1, 2, 2, 2, 2], [0.5, 1, 0.5, 0.5, 2, 0.5, 1, 1, 0.5, 1], [0.5, 1, 0.5, 0.5, 2, 0.5, 1, 1, 0.5, 1], [1, 2, 1, 1, 3, 0.5, 2, 2, 1, 2], [0.5, 1, 0.5, 0.5, 2, 0.5, 1, 1, 0.5, 1]], [[1, 1, 0.166666666666667, 0.166666666666667, 0.5, 0.333333333333333, 0.166666666666667, 0.333333333333333, 0.5, 0.2], [1, 1, 0.166666666666667, 0.166666666666667, 0.5, 0.333333333333333, 0.166666666666667, 0.333333333333333, 0.5, 0.2], [6, 6, 1, 1, 3, 2, 1, 2, 3, 1], [6, 6, 1, 1, 3, 2, 1, 2, 3, 1], [2, 2, 0.333333333333333, 0.333333333333333, 1, 0.5, 0.333333333333333, 0.5, 1, 0.5], [3, 3, 0.5, 0.5, 2, 1, 0.5, 1, 2, 0.5], [6, 6, 1, 1, 3, 2, 1, 2, 3, 1], [3, 3, 0.5, 0.5, 2, 1, 0.5, 1, 2, 0.5], [2, 2, 0.333333333333333, 0.333333333333333, 1, 0.5, 0.333333333333333, 0.5, 1, 0.5], [5, 5, 1, 1, 2, 2, 1, 2, 2, 1]], [[1, 2, 1, 1, 2, 5, 2, 2, 5, 2], [0.5, 1, 0.5, 0.5, 0.5, 2, 0.5, 0.5, 2, 0.5], [1, 2, 1, 1, 2, 5, 2, 2, 5, 2], [1, 2, 1, 1, 2, 5, 2, 2, 5, 2], [0.5, 2, 0.5, 0.5, 1, 3, 1, 1, 3, 1], [0.2, 0.5, 0.2, 0.2, 0.333333333333333, 1, 0.333333333333333, 0.333333333333333, 1, 0.333333333333333], [0.5, 2, 0.5, 0.5, 1, 3, 1, 1, 3, 1], [0.5, 2, 0.5, 0.5, 1, 3, 1, 1, 3, 1], [0.2, 0.5, 0.2, 0.2, 0.333333333333333, 1, 0.333333333333333, 0.333333333333333, 1, 0.333333333333333], [0.5, 2, 0.5, 0.5, 1, 3, 1, 1, 3, 1]], [[1, 0.5, 1, 2, 1, 0.5, 0.333333333333333, 0.5, 2, 0.5], [2, 1, 2, 5, 2, 2, 1, 2, 5, 1], [1, 0.5, 1, 2, 1, 0.5, 0.333333333333333, 0.5, 2, 0.5], [0.5, 0.2, 0.5, 1, 0.5, 0.333333333333333, 0.166666666666667, 0.333333333333333, 1, 0.25], [1, 0.5, 1, 2, 1, 0.5, 0.333333333333333, 0.5, 2, 0.5], [2, 0.5, 2, 3, 2, 1, 0.5, 1, 3, 1], [3, 1, 3, 6, 3, 2, 1, 2, 6, 2], [2, 0.5, 2, 3, 2, 1, 0.5, 1, 3, 1], [0.5, 0.2, 0.5, 1, 0.5, 0.333333333333333, 0.166666666666667, 0.333333333333333, 1, 0.25], [2, 1, 2, 4, 2, 1, 0.5, 1, 4, 1]]]};
+const RIT=[0,0,.58,.9,1.12,1.24,1.32,1.41,1.45,1.49,1.51,1.48,1.56,1.57,1.59],MAXN=15,KEY="spk-ahp-v1";
+const clone=o=>JSON.parse(JSON.stringify(o));
+const DEF={kriteria:D.kriteria,alternatif:D.alternatif,kriteriaMatrix:D.kriteriaMatrix,altMatrix:D.altMatrix};
+const okState=s=>{try{const n=s.kriteria.length,m=s.alternatif.length;return n>=2&&m>=2&&s.kriteriaMatrix.length===n&&s.kriteriaMatrix.every(r=>r.length===n)&&s.altMatrix.length===n&&s.altMatrix.every(M=>M.length===m&&M.every(r=>r.length===m&&r.every(v=>v>0)))}catch(e){return false}};
+let S=clone(DEF);
+try{const s=JSON.parse(localStorage.getItem(KEY)||"null");if(s&&okState(s))S=s}catch(e){}
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}};
+const $=id=>document.getElementById(id);
+const f4=x=>x.toFixed(4),pct=x=>(x*100).toFixed(1)+"%";
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+function ahp(M){const n=M.length;const tot=M[0].map((_,j)=>M.reduce((s,r)=>s+r[j],0));
+ const w=M.map(r=>r.reduce((s,v,j)=>s+v/tot[j],0)/n);
+ const lam=w.reduce((s,x,i)=>s+x*tot[i],0);const ci=(lam-n)/(n-1);const ri=n>=3?RIT[n-1]:0;const cr=ri?ci/ri:0;
+ return{w,lam,ci,ri,cr,tot,ok:cr<=0.1}}
+let C,AK,V,score,order,rank,maxCR,best,topK;
+function compute(){C=ahp(S.kriteriaMatrix);AK=S.altMatrix.map(ahp);
+ V=S.alternatif.map((_,i)=>S.kriteria.map((_,k)=>AK[k].w[i]*C.w[k]));
+ score=V.map(r=>r.reduce((a,b)=>a+b,0));
+ order=score.map((s,i)=>i).sort((a,b)=>score[b]-score[a]);rank=[];order.forEach((i,p)=>rank[i]=p+1);
+ maxCR=Math.max(C.cr,...AK.map(a=>a.cr));best=order[0];topK=V[best].indexOf(Math.max(...V[best]))}
+const badge=(ok,t)=>`<span class="badge ${ok?'':'bad'}">${t||(ok?'Konsisten':'Tidak konsisten')}</span>`;
+const card=(l,v,s)=>`<div class="card"><div class="l">${l}</div><div class="v">${v}</div><div class="s">${s}</div></div>`;
+const bars=(items,max,fmt)=>items.map(([l,v])=>`<div class="bar"><span>${esc(l)}</span><span><i style="width:${max?v/max*100:0}%"></i></span><span>${fmt(v)}</span></div>`).join("");
+const head=(a,tx=[0])=>"<tr>"+a.map((h,i)=>`<th class="${tx.includes(i)?'':'n'}">${h}</th>`).join("")+"</tr>";
+const ratio=v=>{if(v<1){const r=1/v;if(Math.abs(r-Math.round(r))<1e-6)return"1/"+Math.round(r)}return String(+v.toFixed(3))};
+function renderViews(){
+ const K=S.kriteria,A=S.alternatif,nA=A.length,n9=K.length;
+ const wo=C.w.map((w,i)=>i).sort((a,b)=>C.w[b]-C.w[a]);
+ const pcls=r=>r<=Math.ceil(nA*.3)?"h":r<=Math.ceil(nA*.6)?"m":"l";
+ const prio=r=>({h:"Prioritas tinggi",m:"Prioritas sedang",l:"Prioritas rendah"})[pcls(r)];
+ const ic=n=>`<svg class="ic" aria-hidden="true"><use href="#i-${n}"/></svg>`;
+ const kpi=(v,t,s)=>`<div class="kpi"><div><span class="kv">${v}</span><h4>${t}</h4></div><p>${s}</p></div>`;
+ $("brandSub").textContent=nA+" Wilayah Layanan · AHP";
+ $("hero").innerHTML=`<svg class="ic wm" aria-hidden="true"><use href="#i-droplets"/></svg>
+  <div class="hz"><div class="hrow"><span class="eb">Rekomendasi utama, peringkat 1 dari ${nA}</span><span class="code">${A[best].kode}</span></div>
+  <h3>${esc(A[best].nama)}</h3>
+  <div class="chips"><span>${ic("alert")}Status: <b>${prio(1)}</b></span><span>${ic("shield")}Kontributor terbesar: <b>${esc(K[topK].nama)}</b></span><span>${ic("shield")}CR maks ${maxCR.toFixed(3)} · <b>${maxCR<=.1?"Konsisten":"Tidak konsisten"}</b></span></div></div>
+  <div class="hbot"><div class="hs"><span class="big">${f4(score[best])}</span><p>nilai bobot prioritas AHP (0 sampai 1).<br><b>Semakin tinggi nilai, semakin mendesak untuk segera diperbaiki.</b></p></div>
+  <div class="seg" style="grid-template-columns:repeat(${nA},1fr)" role="img" aria-label="Skor ${nA} wilayah urut peringkat">${order.map((i,p)=>`<i style="background:${p?`rgba(255,255,255,${(.12+.4*score[i]/score[best]).toFixed(2)})`:"var(--amber)"}"></i>`).join("")}</div>
+  <p class="cap">Skor ${nA} wilayah, urut dari peringkat 1</p></div>`;
+ $("cards").innerHTML=kpi(nA,"Wilayah Dinilai","Jaringan pipa air bersih")+kpi(n9,"Kriteria AHP","Kriteria penilaian")
+  +kpi(pct(C.w[wo[0]]),"Bobot Terbesar",esc(K[wo[0]].kode+" – "+K[wo[0]].nama))+kpi(f4(score[best]-score[order[1]]),"Selisih Puncak",esc(A[best].nama)+" vs "+esc(A[order[1]].nama));
+ $("concl").textContent=`Kesimpulan: wilayah ${A[best].nama} memiliki score tertinggi sebesar ${score[best].toFixed(3)}, sehingga menjadi alternatif terpilih (prioritas utama perbaikan pipa). Kriteria kontributor terbesar: ${K[topK].nama}.`;
+ $("sbars").innerHTML=bars(order.map(i=>[`${rank[i]}. ${A[i].nama}`,score[i]]),score[best],f4);
+ $("wbars").innerHTML=bars(wo.map(i=>[`${K[i].kode} ${K[i].nama}`,C.w[i]]),C.w[wo[0]],pct);
+ $("wfoot").innerHTML=`<span>Rasio Konsistensi (CR): <b class="${C.ok?"okt":"badt"}">${C.cr.toFixed(5)}</b></span>`+badge(C.ok,C.ok?"Konsisten (CR ≤ 0.1)":"Tidak konsisten (CR > 0.1)");
+ $("rankSub").textContent="Daftar lengkap "+nA+" wilayah hasil perhitungan Analytical Hierarchy Process";
+ $("kCons").innerHTML=kpi(n9+" Kriteria","Orde Matriks (n)","Jumlah kriteria")+kpi(C.lam.toFixed(4),"Eigen Value (λ max)","Σ bobot × total kolom")+kpi(C.ci.toFixed(5),"Consistency Index (CI)","(λmax − n) / (n − 1)")
+  +`<div class="kpi ${C.ok?"okk":"badk"}"><div><span class="kv">${C.cr.toFixed(5)}</span><h4>Consistency Ratio (CR)</h4></div><p>${C.ok?"KONSISTEN (≤ 0.1)":"TIDAK KONSISTEN (> 0.1)"}</p></div>`;
+ $("critCards").innerHTML=K.map((k,i)=>`<div class="cc"><div class="cct"><span class="code">${k.kode}</span><span class="rkb">Peringkat ${wo.indexOf(i)+1}</span></div><h4>${esc(k.nama)}</h4><div class="cw"><b>${pct(C.w[i])}</b><span>bobot ${f4(C.w[i])}</span></div><div class="trk"><i style="width:${C.w[i]/C.w[wo[0]]*100}%"></i></div></div>`).join("");
+ $("altCards").innerHTML=A.map((a,i)=>`<div class="cc"><div class="cct"><span class="code">${a.kode}</span><span class="pp q${pcls(rank[i])}">${prio(rank[i])}</span></div><h4>${esc(a.nama)}</h4><div class="cw"><b>${f4(score[i])}</b><span>Peringkat ${rank[i]} dari ${nA}</span></div><div class="trk"><i style="width:${score[i]/score[best]*100}%"></i></div></div>`).join("");
+ $("tRank").innerHTML=head(["Peringkat","Kode","Wilayah","Score","Proporsi","Selisih vs #1","Prioritas","Kriteria kontributor terbesar"],[0,1,2,6,7])
+  +order.map((i,p)=>{const k=V[i].indexOf(Math.max(...V[i]));return`<tr class="${p?'':'first'}"><td><span class="rk${p?'':' g'}">${p+1}</span></td><td>${A[i].kode}</td><td><b>${esc(A[i].nama)}</b></td><td class="n">${f4(score[i])}</td><td class="n">${pct(score[i])}</td><td class="n">${p?f4(score[i]-score[best]):"–"}</td><td><span class="pp q${pcls(rank[i])}">${prio(rank[i])}</span></td><td>${esc(K[k].nama)}</td></tr>`}).join("");
+ const mx=Math.max(...V.flat());
+ $("tMat").innerHTML=head(["Alternatif",...K.map(k=>k.kode),"Score","Rank"])
+  +A.map((a,i)=>`<tr><td><b>${a.kode} – ${esc(a.nama)}</b></td>${V[i].map(v=>`<td class="n hm" style="--a:${v/mx}">${f4(v)}</td>`).join("")}<td class="n"><b>${f4(score[i])}</b></td><td class="n">${rank[i]}</td></tr>`).join("")
+  +`<tr><td><b>Bobot (w)</b></td>${C.w.map(w=>`<td class="n"><b>${f4(w)}</b></td>`).join("")}<td class="n"><b>1.0000</b></td><td></td></tr>`;
+ const mtab=(M,labs)=>head(["",...labs])+M.map((r,i)=>`<tr><td><b>${labs[i]}</b></td>${r.map(v=>`<td class="n">${v.toFixed(3)}</td>`).join("")}</tr>`).join("");
+ $("tCM").innerHTML=mtab(S.kriteriaMatrix,K.map(k=>k.kode));
+ const consRow=(l,a)=>`<tr><td>${l}</td><td class="n">${a.lam.toFixed(4)}</td><td class="n">${a.ci.toFixed(4)}</td><td class="n">${a.ri}</td><td class="n">${a.cr.toFixed(4)}</td><td>${badge(a.ok)}</td></tr>`;
+ $("tCons").innerHTML=head(["Matriks","λmax","CI","RI","CR","Hasil"],[0,5])+consRow(`Kriteria (${K[0].kode}–${K[n9-1].kode})`,C)+AK.map((a,k)=>consRow("Alternatif terhadap "+K[k].kode,a)).join("");
+ const sel=$("selK"),cur=sel.value;sel.innerHTML=K.map((k,i)=>`<option value="${i}">${k.kode} – ${esc(k.nama)}</option>`).join("");sel.value=cur&&+cur<n9?cur:0;
+ sel.onchange=()=>{const k=+sel.value,M=S.altMatrix[k];$("tAM").innerHTML=head(["",...A.map(a=>a.kode),"Bobot"])+M.map((r,i)=>`<tr><td><b>${A[i].kode}</b></td>${r.map(v=>`<td class="n">${v.toFixed(3)}</td>`).join("")}<td class="n"><b>${f4(AK[k].w[i])}</b></td></tr>`).join("")};
+ sel.onchange();
+}
+$("tSaaty").innerHTML=head(["Nilai","Keterangan"],[0,1])+D.saaty.map(s=>`<tr><td><b>${s[0]}</b></td><td>${s[1]}</td></tr>`).join("");
+$("tRI").innerHTML=head(["n","RI"])+RIT.map((r,i)=>`<tr><td>${i+1}</td><td>${r}</td></tr>`).join("");
+
+const refreshAll=()=>{save();compute();renderViews()};
+const toast=t=>{const e=$("toast");e.textContent=t;e.classList.add("on");clearTimeout(toast.t);toast.t=setTimeout(()=>e.classList.remove("on"),2600)};
+// ---------- SUMBER DATA: impor dari Google Sheets / CSV ----------
+const SRCKEY="spk-ahp-src";
+function parseCSV(text){const rows=[];let row=[],f="",q=false;text=text.replace(/^﻿/,"");
+ for(let i=0;i<text.length;i++){const c=text[i];
+  if(q){if(c==='"'){if(text[i+1]==='"'){f+='"';i++}else q=false}else f+=c}
+  else if(c==='"')q=true;else if(c===","){row.push(f);f=""}
+  else if(c==="\n"||c==="\r"){if(c==="\r"&&text[i+1]==="\n")i++;row.push(f);rows.push(row);row=[];f=""}
+  else f+=c}
+ if(f!==""||row.length){row.push(f);rows.push(row)}return rows}
+const numOf=s=>{s=String(s||"").trim();if(!s)return NaN;if(s.includes("/")){const[a,b]=s.split("/");return parseFloat(a.replace(",","."))/parseFloat(b.replace(",","."))}return parseFloat(s.replace(",","."))};
+function parseSheet(rows){const warn=[];
+ const kr={},al={},pairs={};
+ rows.forEach(r=>{r.forEach((c,ci)=>{c=(c||"").trim();let m;
+  if(ci===0&&(m=/^C(\d+)$/.exec(c))&&(r[1]||"").trim()&&!kr[+m[1]])kr[+m[1]]=r[1].trim();
+  if((m=/^C(\d+)\s*:\s*C(\d+)$/.exec(c))){const v=numOf(r[ci+1]);const k=m[1]+":"+m[2];if(isFinite(v)&&!(k in pairs))pairs[k]=v}
+  if((m=/^A(\d+)\s*[–-]\s*(.+)$/.exec(c))&&!al[+m[1]])al[+m[1]]=m[2].trim()})});
+ const kc=Object.keys(kr).map(Number).sort((a,b)=>a-b),ac=Object.keys(al).map(Number).sort((a,b)=>a-b);
+ const n=kc.length,m=ac.length;
+ if(n<2||m<2)throw new Error("Format tidak dikenali: kriteria/alternatif tidak ditemukan. Pakai tata letak yang sama dengan spk_ahp.xlsx.");
+ if(n>MAXN||m>MAXN)throw new Error("Maksimal "+MAXN+" kriteria dan "+MAXN+" alternatif.");
+ const km=Array.from({length:n},()=>Array(n).fill(1));let miss=0;
+ for(let i=1;i<n;i++)for(let j=0;j<i;j++){const v=pairs[(i+1)+":"+(j+1)];if(v>0){km[i][j]=v;km[j][i]=1/v}else miss++}
+ if(miss)warn.push(miss+" perbandingan kriteria tidak ditemukan (dianggap 1)");
+ const am=[];
+ for(let k=1;k<=n;k++){const M=Array.from({length:m},()=>Array(m).fill(1));let pos=null;
+  rows.forEach((r,ri)=>r.forEach((c,ci)=>{if(!pos&&new RegExp("^7\\."+k+"\\)").test((c||"").trim()))pos=[ri,ci]}));
+  let ok=false;
+  if(pos){const[r0,c0]=pos;let hr=-1;for(let h=r0+1;h<=r0+4&&h<rows.length;h++)if((rows[h][c0]||"").trim()==="C"+k){hr=h;break}
+   if(hr>=0){ok=true;for(let i=1;i<m;i++)for(let j=0;j<i;j++){const v=numOf((rows[hr+1+i]||[])[c0+1+j]);if(v>0){M[i][j]=v;M[j][i]=1/v}else ok=false}}}
+  if(!ok)warn.push("Matriks alternatif untuk C"+k+" tidak lengkap (sebagian dianggap 1)");
+  am.push(M)}
+ const st={kriteria:kc.map((x,i)=>({kode:"C"+(i+1),nama:kr[x]})),alternatif:ac.map((x,i)=>({kode:"A"+(i+1),nama:al[x]})),kriteriaMatrix:km,altMatrix:am};
+ if(!okState(st))throw new Error("Data tidak valid setelah dibaca.");
+ return{state:st,warn}}
+function applyImport(st,warn,label){S=st;refreshAll();setStatus(label+" · "+S.alternatif.length+" wilayah, "+S.kriteria.length+" kriteria"+(warn.length?" · Catatan: "+warn.join("; "):""),!warn.length)}
+function setStatus(t,ok){const e=$("srcStatus");e.textContent=t;e.className="mut "+(ok?"okt":"badt")}
+function csvUrl(u){u=u.trim();const m=/\/spreadsheets\/d\/(?:e\/)?([\w-]+)/.exec(u);if(!m)return null;
+ if(/\/d\/e\//.test(u))return u.replace(/\/pubhtml.*$/,"/pub").replace(/\?.*$/,"")+"?output=csv"+((/gid=(\d+)/.exec(u)||[])[1]?"&gid="+/gid=(\d+)/.exec(u)[1]:"");
+ const g=(/[?#&]gid=(\d+)/.exec(u)||[])[1]||"0";return`https://docs.google.com/spreadsheets/d/${m[1]}/gviz/tq?tqx=out:csv&gid=${g}`}
+async function syncSrc(url){setSync("load","Menyinkronkan…","");const cu=csvUrl(url);if(!cu){setSync("err","Link tidak dikenali","");setStatus("Link tidak dikenali. Tempel link Google Sheets (…/spreadsheets/d/…).",false);return}
+ setStatus("Memuat data…",true);
+ try{const r=await fetch(cu);if(!r.ok)throw new Error("HTTP "+r.status);const txt=await r.text();
+  if(/<html|<!doctype/i.test(txt.slice(0,200)))throw new Error("Sheet belum dibagikan publik");
+  const{state,warn}=parseSheet(parseCSV(txt));applyImport(state,warn,"Tersinkron "+new Date().toLocaleString("id-ID"));
+  try{localStorage.setItem(SRCKEY,JSON.stringify({url,at:Date.now()}))}catch(e){}updateSrcUi()}
+ catch(e){setSync("err","Gagal tersambung ke spreadsheet","Pastikan sheet dibagikan publik (Pelihat)");setStatus("Gagal sinkron: "+e.message+". Pastikan sheet dibagikan 'Siapa saja yang memiliki link: Pelihat', atau pakai Impor file CSV.",false)}}
+function srcSaved(){try{return JSON.parse(localStorage.getItem(SRCKEY)||"null")}catch(e){return null}}
+const DEFAULT_SRC="https://docs.google.com/spreadsheets/d/1CcN0tMjmZED89cFG9eEs7ruOkPgs5ZhzxE1F_BqE7Q8/edit?usp=sharing";
+const fmtSync=t=>{const d=new Date(t);return "Sinkron "+d.toLocaleDateString("id-ID",{day:"2-digit",month:"short"}).replace(".","")+", "+d.toLocaleTimeString("id-ID",{hour:"2-digit",minute:"2-digit"})};
+function setSync(st,txt,time){const e=$("sync");e.dataset.s=st;$("syncTxt").textContent=txt;$("syncTime").textContent=time||"";
+ $("livePill").dataset.s=st;$("liveTxt").textContent={ok:"Live Sheet Aktif",load:"Menyinkronkan…",err:"Gagal tersambung"}[st]||"Belum tersambung";$("syncIc").classList.toggle("spin",st==="load")}
+function updateSrcUi(){const s=srcSaved(),url=(s&&s.url)||DEFAULT_SRC;if(!$("srcUrl").value)$("srcUrl").value=url;
+ const o=$("btnOpen");o.href=url;o.style.display="";const so=$("sideOpen");so.href=url;so.style.display="inline";
+ if(s&&s.at)setSync("ok","Tersambung ke spreadsheet",fmtSync(s.at));else setSync("none","Belum tersambung ke spreadsheet","Klik “Sinkron data” untuk memuat")}
+$("btnSync").onclick=()=>syncSrc($("srcUrl").value);
+$("btnSync2").onclick=()=>{const s=srcSaved();syncSrc(s?s.url:($("srcUrl").value||DEFAULT_SRC))};
+$("srcFile").onchange=e=>{const f=e.target.files[0];if(!f)return;const rd=new FileReader();
+ rd.onload=()=>{try{const{state,warn}=parseSheet(parseCSV(String(rd.result)));applyImport(state,warn,"Diimpor dari "+f.name)}catch(err){setStatus("Gagal impor: "+err.message,false)}};rd.readAsText(f);e.target.value=""};
+updateSrcUi();
+
+// ---------- nav & theme ----------
+const T={ringkasan:["Ringkasan SPK AHP","Sistem pendukung keputusan penentuan prioritas perbaikan pipa air bersih di wilayah layanan.","Dashboard"],peringkat:["Perankingan","Urutan prioritas tindakan berdasarkan score AHP.","Analisis"],matriks:["Matriks AHP","Skor alternatif × bobot kriteria.","Analisis"],kriteria:["Kriteria & Bobot","Perbandingan berpasangan antar kriteria dan uji konsistensi.","Analisis"],alternatif:["Data Wilayah","Wilayah layanan dan matriks perbandingan per kriteria.","Data & Rujukan"],metode:["Metode & Validasi","Skala Saaty, Random Index, dan rumus.","Data & Rujukan"],sumber:["Koneksi Google Sheets","Hubungkan dashboard dengan spreadsheet sumber.","Data & Rujukan"]};
+function show(){const v=(location.hash||"#ringkasan").slice(1);const id=T[v]?v:"ringkasan";
+ document.querySelectorAll("section.view").forEach(s=>s.classList.toggle("on",s.id==="v-"+id));
+ document.querySelectorAll("aside a").forEach(a=>a.classList.toggle("on",a.dataset.v===id));
+ $("ttl").textContent=T[id][0];$("sub").textContent=T[id][1];$("crumb").textContent=T[id][2];document.title=T[id][0]+" · SPK Pipa Air AHP"}
+addEventListener("hashchange",show);
+document.documentElement.dataset.theme="dark";
+$("btnCsv").onclick=()=>{const K=S.kriteria,A=S.alternatif;const rows=[["Peringkat","Kode","Wilayah","Score",...K.map(k=>k.nama)]];
+ order.forEach((i,p)=>rows.push([p+1,A[i].kode,A[i].nama,score[i].toFixed(6),...V[i].map(v=>v.toFixed(6))]));
+ const csv=rows.map(r=>r.map(c=>`"${String(c).replace(/"/g,'""')}"`).join(",")).join("\n");
+ const a=document.createElement("a");a.href=URL.createObjectURL(new Blob(["\ufeff"+csv],{type:"text/csv"}));a.download="hasil-ahp.csv";a.click();toast("Hasil diunduh: hasil-ahp.csv")};
+compute();renderViews();show();
+</script>
+</body>
+</html>
